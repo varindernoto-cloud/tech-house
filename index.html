@@ -1,0 +1,1371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tech House | Electrical & Home Services</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sky: #dff0fb;
+    --sky2: #c8e5f7;
+    --sky3: #b3d9f4;
+    --orange: #c94f00;
+    --orange2: #e05a00;
+    --orange-glow: rgba(201,79,0,0.25);
+    --dark: #0c2233;
+    --mid: #1e4d6b;
+    --text: #0f3450;
+    --white: #ffffff;
+    --card-bg: rgba(255,255,255,0.72);
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--sky);
+    color: var(--dark);
+    font-family: 'Barlow', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 5%;
+    background: rgba(200,229,247,0.93);
+    backdrop-filter: blur(18px);
+    border-bottom: 1px solid rgba(201,79,0,0.15);
+    box-shadow: 0 2px 20px rgba(12,34,51,0.08);
+  }
+
+  .logo { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; }
+
+  .logo-icon {
+    width: 40px; height: 40px;
+    background: var(--orange);
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem;
+  }
+
+  .logo-text {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    letter-spacing: 2px;
+    color: var(--dark);
+  }
+  .logo-text span { color: var(--orange); }
+
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+
+  .nav-links a {
+    color: var(--mid);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    transition: color 0.3s;
+    position: relative;
+  }
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px; left: 0;
+    width: 0; height: 2px;
+    background: var(--orange);
+    transition: width 0.3s;
+  }
+  .nav-links a:hover { color: var(--orange); }
+  .nav-links a:hover::after { width: 100%; }
+
+  .nav-cta {
+    background: var(--orange) !important;
+    color: var(--white) !important;
+    padding: 0.5rem 1.4rem;
+    border-radius: 3px;
+    font-weight: 700 !important;
+    transition: background 0.3s, transform 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--orange2) !important; transform: translateY(-1px); }
+  .nav-cta::after { display: none !important; }
+
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+  .hamburger span { display: block; width: 26px; height: 2.5px; background: var(--dark); border-radius: 2px; transition: 0.3s; }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 110px 5% 60px;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #dff0fb 0%, #b8dcf5 60%, #9ecfee 100%);
+  }
+
+  .hero-grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(201,79,0,0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(201,79,0,0.06) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+  }
+
+  .hero-glow {
+    position: absolute;
+    right: 5%; top: 50%;
+    transform: translateY(-50%);
+    width: 520px; height: 520px;
+    background: radial-gradient(circle, rgba(201,79,0,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .bolt-deco {
+    position: absolute;
+    right: 7%; top: 50%;
+    transform: translateY(-50%);
+    font-size: 20rem;
+    color: rgba(201,79,0,0.07);
+    pointer-events: none;
+    animation: pulse-bolt 4s ease-in-out infinite;
+  }
+
+  @keyframes pulse-bolt {
+    0%, 100% { opacity: 0.5; transform: translateY(-50%) scale(1); }
+    50% { opacity: 0.9; transform: translateY(-50%) scale(1.04); }
+  }
+
+  .hero-content { position: relative; z-index: 2; max-width: 680px; }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(201,79,0,0.1);
+    border: 1px solid rgba(201,79,0,0.3);
+    padding: 0.4rem 1rem;
+    border-radius: 3px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 1.5rem;
+    animation: fadeInUp 0.6s ease both;
+  }
+  .hero-badge::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--orange);
+    border-radius: 50%;
+    animation: blink 1.5s ease infinite;
+  }
+  @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.2; } }
+
+  .hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3.5rem, 8vw, 7rem);
+    line-height: 0.95;
+    letter-spacing: 2px;
+    margin-bottom: 1.5rem;
+    color: var(--dark);
+    animation: fadeInUp 0.6s 0.1s ease both;
+  }
+  .hero-title .line2 { color: var(--orange); display: block; }
+
+  .hero-sub {
+    font-size: 1.1rem;
+    color: var(--mid);
+    line-height: 1.7;
+    max-width: 520px;
+    margin-bottom: 2.5rem;
+    font-weight: 400;
+    animation: fadeInUp 0.6s 0.2s ease both;
+  }
+
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; animation: fadeInUp 0.6s 0.3s ease both; }
+
+  .btn-primary {
+    background: var(--orange);
+    color: var(--white);
+    padding: 0.9rem 2rem;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 3px;
+    transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+    box-shadow: 0 4px 20px rgba(201,79,0,0.35);
+  }
+  .btn-primary:hover {
+    background: var(--orange2);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(201,79,0,0.45);
+  }
+
+  .btn-secondary {
+    border: 2px solid rgba(201,79,0,0.4);
+    color: var(--dark);
+    padding: 0.9rem 2rem;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 3px;
+    transition: border-color 0.3s, background 0.3s, transform 0.2s;
+  }
+  .btn-secondary:hover {
+    border-color: var(--orange);
+    background: rgba(201,79,0,0.07);
+    transform: translateY(-2px);
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 3rem;
+    margin-top: 3.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(12,34,51,0.12);
+    animation: fadeInUp 0.6s 0.4s ease both;
+  }
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.4rem;
+    color: var(--orange);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.75rem;
+    color: var(--mid);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-top: 0.2rem;
+  }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── SECTION COMMONS ── */
+  section { padding: 6rem 5%; position: relative; }
+
+  .section-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+  .section-label::before {
+    content: '';
+    display: inline-block;
+    width: 30px; height: 2px;
+    background: var(--orange);
+  }
+
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    letter-spacing: 2px;
+    line-height: 1;
+    margin-bottom: 1rem;
+    color: var(--dark);
+  }
+
+  .section-desc {
+    color: var(--mid);
+    max-width: 560px;
+    line-height: 1.8;
+    font-size: 1rem;
+    font-weight: 400;
+  }
+
+  /* ── SERVICES ── */
+  #services { background: var(--sky2); }
+
+  .services-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+
+  /* SPOT IMAGES */
+  .spot-images {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
+  .spot-card {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 6px 24px rgba(12,34,51,0.15);
+    border: 1px solid rgba(201,79,0,0.15);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .spot-card:hover { transform: translateY(-5px); box-shadow: 0 14px 36px rgba(12,34,51,0.22); }
+  .spot-img-box { width: 100%; height: 200px; overflow: hidden; }
+  .spot-label { display: flex; align-items: center; gap: 1rem; padding: 1.2rem 1.5rem; background: var(--card-bg); }
+  .spot-icon { font-size: 2rem; flex-shrink: 0; }
+  .spot-title { font-family: 'Barlow Condensed', sans-serif; font-size: 1.15rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--dark); }
+  .spot-sub { font-size: 0.8rem; color: var(--mid); margin-top: 0.2rem; }
+
+  /* SERVICE CARDS */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .service-card {
+    background: var(--card-bg);
+    border: 1px solid rgba(201,79,0,0.12);
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.3s, box-shadow 0.3s;
+    backdrop-filter: blur(10px);
+  }
+  .service-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 36px rgba(12,34,51,0.14);
+  }
+
+  .service-card-img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s;
+  }
+  .service-card:hover .service-card-img { transform: scale(1.05); }
+
+  .service-card-img-wrap {
+    overflow: hidden;
+    position: relative;
+  }
+
+  .service-card-img-wrap::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(transparent 50%, rgba(12,34,51,0.3) 100%);
+  }
+
+  .service-body { padding: 1.5rem; }
+
+  .service-icon-row {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 0.8rem;
+  }
+  .service-icon { font-size: 1.8rem; }
+
+  .service-number {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    color: rgba(201,79,0,0.15);
+    line-height: 1;
+    margin-left: auto;
+  }
+
+  .service-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 0.6rem;
+    color: var(--dark);
+  }
+
+  .service-desc {
+    color: var(--mid);
+    font-size: 0.9rem;
+    line-height: 1.65;
+    margin-bottom: 1rem;
+  }
+
+  .service-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+
+  .tag {
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 0.2rem 0.6rem;
+    border: 1px solid rgba(201,79,0,0.28);
+    color: var(--orange);
+    border-radius: 2px;
+    background: rgba(201,79,0,0.05);
+  }
+
+  .late-night-tag {
+    border-color: rgba(99,60,180,0.35);
+    color: #6b3fa0;
+    background: rgba(99,60,180,0.07);
+  }
+
+  /* ── BANNERS ── */
+  .late-night-strip {
+    background: linear-gradient(135deg, #1a0a40, #0f1a60);
+    padding: 1.5rem 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    border-top: 1px solid rgba(130,90,220,0.25);
+    border-bottom: 1px solid rgba(130,90,220,0.25);
+  }
+  .ln-left { display: flex; align-items: center; gap: 1rem; }
+  .ln-icon { font-size: 2rem; animation: float 3s ease-in-out infinite; }
+  @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-5px)} }
+  .ln-title { font-family:'Bebas Neue',sans-serif; font-size:1.5rem; letter-spacing:2px; color:#c4b5fd; }
+  .ln-sub { font-size:0.82rem; color:#a89dcc; }
+  .ln-btn {
+    font-family:'Bebas Neue',sans-serif;
+    font-size:1.3rem;
+    color:#c4b5fd;
+    letter-spacing:2px;
+    text-decoration:none;
+    background:rgba(130,90,220,0.15);
+    border:1px solid rgba(130,90,220,0.35);
+    padding:0.6rem 1.5rem;
+    border-radius:3px;
+    transition:background 0.3s;
+  }
+  .ln-btn:hover { background:rgba(130,90,220,0.28); }
+
+  .emergency-banner {
+    background: var(--orange);
+    padding: 2rem 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+  .em-left { display: flex; align-items: center; gap: 1.5rem; }
+  .em-icon { font-size: 2.5rem; animation: shake 2.5s ease-in-out infinite; }
+  @keyframes shake {
+    0%,100%{transform:rotate(0)} 10%{transform:rotate(-10deg)} 20%{transform:rotate(10deg)}
+    30%{transform:rotate(-5deg)} 40%{transform:rotate(5deg)} 50%{transform:rotate(0)}
+  }
+  .em-text-title {
+    font-family:'Bebas Neue',sans-serif;
+    font-size:1.8rem;
+    color:var(--white);
+    letter-spacing:2px;
+  }
+  .em-text-sub { font-size:0.88rem; color:rgba(255,255,255,0.8); font-weight:500; }
+  .em-phone {
+    font-family:'Bebas Neue',sans-serif;
+    font-size:1.9rem;
+    color:var(--white);
+    letter-spacing:2px;
+    text-decoration:none;
+    background:rgba(255,255,255,0.18);
+    padding:0.6rem 1.5rem;
+    border-radius:3px;
+    transition:background 0.3s;
+  }
+  .em-phone:hover { background:rgba(255,255,255,0.28); }
+
+  /* ── ABOUT ── */
+  #about {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+    background: var(--sky);
+  }
+
+  .about-main-box {
+    background: var(--card-bg);
+    border: 1.5px solid rgba(201,79,0,0.18);
+    border-radius: 12px;
+    padding: 2.5rem;
+    position: relative;
+    box-shadow: 0 8px 32px rgba(12,34,51,0.08);
+  }
+  .about-main-box::before {
+    content: '';
+    position: absolute;
+    top: -8px; left: -8px;
+    right: 8px; bottom: 8px;
+    border: 1.5px solid rgba(201,79,0,0.12);
+    border-radius: 14px;
+    pointer-events: none;
+  }
+
+  .about-big-icon {
+    font-size: 6rem;
+    text-align: center;
+    display: block;
+    margin-bottom: 1rem;
+    filter: drop-shadow(0 0 20px rgba(201,79,0,0.3));
+  }
+
+  .about-quote {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.7rem;
+    letter-spacing: 2px;
+    color: var(--orange);
+    text-align: center;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+  }
+
+  .about-badge-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; }
+
+  .about-badge {
+    background: rgba(201,79,0,0.06);
+    border: 1px solid rgba(201,79,0,0.15);
+    padding: 1rem;
+    text-align: center;
+    border-radius: 6px;
+  }
+  .about-badge .ab-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.9rem;
+    color: var(--orange);
+  }
+  .about-badge .ab-label {
+    font-size: 0.68rem;
+    color: var(--mid);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .about-content .section-desc { max-width: 100%; margin-bottom: 2rem; }
+
+  .about-list { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; margin-bottom: 2.5rem; }
+  .about-list li {
+    display: flex; align-items: center; gap: 0.8rem;
+    font-size: 0.95rem; color: var(--text); font-weight: 400;
+  }
+  .about-list li::before { content: '⚡'; color: var(--orange); font-size: 0.85rem; flex-shrink: 0; }
+
+  /* ── WHY US ── */
+  #why { background: var(--sky2); }
+
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .why-card {
+    padding: 1.8rem 1.5rem;
+    border-left: 3px solid var(--orange);
+    background: var(--card-bg);
+    border-radius: 0 8px 8px 0;
+    box-shadow: 0 2px 12px rgba(12,34,51,0.07);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .why-card:hover { transform: translateX(5px); box-shadow: 0 6px 24px rgba(12,34,51,0.12); }
+
+  .why-icon { font-size: 2rem; margin-bottom: 0.8rem; display: block; }
+  .why-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
+    color: var(--dark);
+  }
+  .why-desc { color: var(--mid); font-size: 0.88rem; line-height: 1.6; }
+
+  /* ── CONTACT ── */
+  #contact {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+    background: var(--sky);
+  }
+
+  .contact-info .section-desc { margin-bottom: 2.5rem; }
+
+  .contact-items { display: flex; flex-direction: column; gap: 1rem; }
+
+  .contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.2rem;
+    padding: 1.2rem 1.4rem;
+    border: 1px solid rgba(12,34,51,0.1);
+    background: var(--card-bg);
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(12,34,51,0.06);
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  .contact-item:hover {
+    border-color: rgba(201,79,0,0.35);
+    box-shadow: 0 4px 18px rgba(201,79,0,0.1);
+  }
+
+  .ci-icon {
+    font-size: 1.4rem;
+    flex-shrink: 0;
+    width: 44px; height: 44px;
+    background: rgba(201,79,0,0.08);
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 8px;
+  }
+  .ci-label {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 0.2rem;
+  }
+  .ci-value { color: var(--dark); font-size: 0.93rem; font-weight: 500; }
+
+  /* ── FORM ── */
+  .contact-form {
+    background: var(--card-bg);
+    border: 1.5px solid rgba(201,79,0,0.13);
+    border-radius: 12px;
+    padding: 2.5rem;
+    box-shadow: 0 8px 32px rgba(12,34,51,0.09);
+    backdrop-filter: blur(10px);
+  }
+
+  .form-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    letter-spacing: 2px;
+    margin-bottom: 1.8rem;
+    color: var(--dark);
+  }
+
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 0; }
+  .form-group { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1rem; }
+
+  .form-group label {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--mid);
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    background: rgba(255,255,255,0.75);
+    border: 1.5px solid rgba(12,34,51,0.14);
+    color: var(--dark);
+    padding: 0.8rem 1rem;
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.93rem;
+    border-radius: 6px;
+    outline: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    width: 100%;
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: var(--orange);
+    box-shadow: 0 0 0 3px rgba(201,79,0,0.1);
+    background: #fff;
+  }
+  .form-group textarea { resize: vertical; min-height: 100px; }
+
+  .form-submit {
+    width: 100%;
+    background: var(--orange);
+    color: var(--white);
+    padding: 1rem;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+    box-shadow: 0 4px 18px rgba(201,79,0,0.3);
+    margin-top: 0.4rem;
+  }
+  .form-submit:hover {
+    background: var(--orange2);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(201,79,0,0.4);
+  }
+
+  .success-msg {
+    display: none;
+    background: rgba(201,79,0,0.07);
+    border: 1px solid var(--orange);
+    color: var(--orange);
+    padding: 1rem;
+    text-align: center;
+    border-radius: 6px;
+    font-weight: 600;
+    margin-top: 1rem;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--dark);
+    padding: 3rem 5% 2rem;
+    border-top: 2px solid var(--orange);
+  }
+
+  .footer-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    margin-bottom: 2rem;
+  }
+
+  .footer-logo-text {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    letter-spacing: 2px;
+    color: #fff;
+  }
+  .footer-logo-text span { color: var(--orange); }
+
+  .footer-tagline {
+    color: rgba(255,255,255,0.55);
+    font-size: 0.88rem;
+    max-width: 280px;
+    line-height: 1.6;
+    margin-top: 0.5rem;
+  }
+
+  .footer-col h4 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 1rem;
+  }
+
+  .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+  .footer-links a {
+    color: rgba(255,255,255,0.6);
+    text-decoration: none;
+    font-size: 0.88rem;
+    transition: color 0.3s;
+  }
+  .footer-links a:hover { color: var(--orange); }
+
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .footer-copy { color: rgba(255,255,255,0.35); font-size: 0.78rem; }
+  .footer-copy span { color: var(--orange); }
+
+  /* ── SCROLL REVEAL ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(35px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 1024px) {
+    .skill-gallery { grid-template-columns: repeat(3, 1fr); }
+    .skill-gallery .gallery-item:nth-child(4),
+    .skill-gallery .gallery-item:nth-child(5) { display: none; }
+  }
+
+  @media (max-width: 900px) {
+    #about, #contact { grid-template-columns: 1fr; gap: 3rem; }
+    .form-row { grid-template-columns: 1fr; }
+    .hero-stats { gap: 2rem; }
+    .skill-gallery { grid-template-columns: repeat(2, 1fr); }
+    .skill-gallery .gallery-item:nth-child(3),
+    .skill-gallery .gallery-item:nth-child(4),
+    .skill-gallery .gallery-item:nth-child(5) { display: none; }
+    .nav-links {
+      display: none;
+      position: absolute;
+      top: 100%; left: 0; right: 0;
+      background: rgba(200,229,247,0.99);
+      flex-direction: column;
+      gap: 0;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid rgba(201,79,0,0.12);
+      box-shadow: 0 8px 24px rgba(12,34,51,0.1);
+    }
+    .nav-links.open { display: flex; }
+    .nav-links li { border-bottom: 1px solid rgba(12,34,51,0.06); }
+    .nav-links a { padding: 0.9rem 2rem; display: block; }
+    .hamburger { display: flex; }
+  }
+
+  @media (max-width: 600px) {
+    .hero-title { font-size: 3.2rem; }
+    .hero-stats { flex-wrap: wrap; gap: 1.5rem; }
+    .emergency-banner { flex-direction: column; text-align: center; }
+    .em-left { flex-direction: column; }
+    .contact-form { padding: 1.8rem 1.2rem; }
+    .skill-gallery { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══ -->
+<nav id="navbar">
+  <a href="#hero" class="logo">
+    <div class="logo-icon">⚡</div>
+    <span class="logo-text">TECH<span>HOUSE</span></span>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#why">Why Us</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="tel:+919876543210" class="nav-cta">📞 Call Now</a></li>
+  </ul>
+  <div class="hamburger" onclick="toggleNav()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section id="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="bolt-deco">⚡</div>
+  <div class="hero-content">
+    <div class="hero-badge">⚡ Professional Home Services — Jalandhar, Punjab</div>
+    <h1 class="hero-title">
+      POWERING<br>
+      <span class="line2">YOUR HOME</span>
+    </h1>
+    <p class="hero-sub">Expert electrician work, AC servicing & washing, RO repair, and CCTV installation. Fast, reliable, and professional — available late night and for emergency call-outs across Jalandhar.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Get a Free Quote</a>
+      <a href="#services" class="btn-secondary">View Services</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">500+</div>
+        <div class="stat-label">Jobs Completed</div>
+      </div>
+      <div>
+        <div class="stat-num">8+</div>
+        <div class="stat-label">Years Experience</div>
+      </div>
+      <div>
+        <div class="stat-num">24/7</div>
+        <div class="stat-label">Late Night Ready</div>
+      </div>
+      <div>
+        <div class="stat-num">5★</div>
+        <div class="stat-label">Rated Service</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SERVICES ═══ -->
+<section id="services">
+  <div class="services-header reveal">
+    <div>
+      <div class="section-label">What We Do</div>
+      <h2 class="section-title">OUR SERVICES</h2>
+    </div>
+    <p class="section-desc">From wiring to air conditioning, RO repair to CCTV security — every essential home service under one roof, available late night too.</p>
+  </div>
+
+  <!-- TWO SPOT IMAGES -->
+  <div class="spot-images reveal">
+    <!-- Electrician Spot -->
+    <div class="spot-card">
+      <div class="spot-img-box" style="background: linear-gradient(135deg, #1a2a1a 0%, #0d1f0d 100%);">
+        <svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+          <!-- Background wall -->
+          <rect width="400" height="220" fill="#1a2a1a"/>
+          <!-- Electrical panel/board -->
+          <rect x="120" y="20" width="160" height="180" rx="6" fill="#2a3a2a" stroke="#3a5a3a" stroke-width="2"/>
+          <!-- Panel header -->
+          <rect x="120" y="20" width="160" height="30" rx="4" fill="#c94f00"/>
+          <text x="200" y="40" text-anchor="middle" fill="white" font-size="11" font-weight="bold" font-family="Arial">MAIN DISTRIBUTION</text>
+          <!-- Circuit breakers -->
+          <rect x="135" y="65" width="55" height="18" rx="3" fill="#1a1a1a" stroke="#555" stroke-width="1"/>
+          <rect x="200" y="65" width="55" height="18" rx="3" fill="#c94f00" stroke="#c94f00" stroke-width="1"/>
+          <rect x="135" y="90" width="55" height="18" rx="3" fill="#1a1a1a" stroke="#555" stroke-width="1"/>
+          <rect x="200" y="90" width="55" height="18" rx="3" fill="#1a1a1a" stroke="#555" stroke-width="1"/>
+          <rect x="135" y="115" width="55" height="18" rx="3" fill="#1a1a1a" stroke="#555" stroke-width="1"/>
+          <rect x="200" y="115" width="55" height="18" rx="3" fill="#1a1a1a" stroke="#555" stroke-width="1"/>
+          <rect x="135" y="140" width="55" height="18" rx="3" fill="#1a1a1a" stroke="#555" stroke-width="1"/>
+          <rect x="200" y="140" width="55" height="18" rx="3" fill="#1a1a1a" stroke="#555" stroke-width="1"/>
+          <!-- Wires -->
+          <line x1="80" y1="80" x2="120" y2="80" stroke="#f97316" stroke-width="3"/>
+          <line x1="80" y1="100" x2="120" y2="100" stroke="#3b82f6" stroke-width="3"/>
+          <line x1="80" y1="120" x2="120" y2="120" stroke="#eab308" stroke-width="3"/>
+          <line x1="280" y1="85" x2="330" y2="85" stroke="#f97316" stroke-width="3"/>
+          <line x1="280" y1="105" x2="330" y2="105" stroke="#3b82f6" stroke-width="3"/>
+          <!-- Worker hand with screwdriver -->
+          <ellipse cx="60" cy="140" rx="22" ry="30" fill="#8B5E3C" transform="rotate(-30 60 140)"/>
+          <rect x="55" y="108" width="8" height="35" rx="3" fill="#d97706" transform="rotate(-30 59 125)"/>
+          <rect x="57" y="95" width="4" height="14" rx="1" fill="#9ca3af" transform="rotate(-30 59 102)"/>
+          <!-- Lightning bolt -->
+          <polygon points="205,42 195,58 202,58 192,74 210,55 202,55 212,42" fill="#fcd34d"/>
+          <!-- Glowing effect on active breaker -->
+          <rect x="200" y="65" width="55" height="18" rx="3" fill="none" stroke="#f97316" stroke-width="2" opacity="0.6">
+            <animate attributeName="opacity" values="0.3;0.9;0.3" dur="1.5s" repeatCount="indefinite"/>
+          </rect>
+          <!-- Label -->
+          <text x="200" y="210" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="Arial">Certified Electrical Work</text>
+        </svg>
+      </div>
+      <div class="spot-label">
+        <span class="spot-icon">⚡</span>
+        <div>
+          <div class="spot-title">Electrician Work</div>
+          <div class="spot-sub">Wiring · Fault Finding · Panel Upgrades · Sockets</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AC Washing Spot -->
+    <div class="spot-card">
+      <div class="spot-img-box" style="background: linear-gradient(135deg, #0a1a2e 0%, #0d2040 100%);">
+        <svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+          <!-- Background -->
+          <rect width="400" height="220" fill="#0a1a2e"/>
+          <!-- AC unit body -->
+          <rect x="80" y="40" width="240" height="110" rx="10" fill="#1e3a5f" stroke="#2a5a8f" stroke-width="2"/>
+          <!-- AC top panel -->
+          <rect x="80" y="40" width="240" height="28" rx="8" fill="#163050"/>
+          <!-- Vents on AC -->
+          <rect x="95" y="80" width="210" height="6" rx="2" fill="#0d2040"/>
+          <rect x="95" y="92" width="210" height="6" rx="2" fill="#0d2040"/>
+          <rect x="95" y="104" width="210" height="6" rx="2" fill="#0d2040"/>
+          <rect x="95" y="116" width="210" height="6" rx="2" fill="#0d2040"/>
+          <!-- AC brand panel -->
+          <rect x="280" y="50" width="28" height="12" rx="2" fill="#c94f00"/>
+          <!-- Power light -->
+          <circle cx="298" cy="56" r="4" fill="#22c55e">
+            <animate attributeName="opacity" values="1;0.3;1" dur="2s" repeatCount="indefinite"/>
+          </circle>
+          <!-- Water spray / washing streams -->
+          <g opacity="0.8">
+            <ellipse cx="110" cy="160" rx="3" ry="40" fill="#60a5fa" opacity="0.6" transform="rotate(15 110 160)"/>
+            <ellipse cx="140" cy="165" rx="3" ry="45" fill="#93c5fd" opacity="0.5" transform="rotate(10 140 165)"/>
+            <ellipse cx="170" cy="163" rx="3" ry="42" fill="#60a5fa" opacity="0.7" transform="rotate(5 170 163)"/>
+            <ellipse cx="200" cy="162" rx="3" ry="44" fill="#93c5fd" opacity="0.5" transform="rotate(-2 200 162)"/>
+            <ellipse cx="230" cy="163" rx="3" ry="42" fill="#60a5fa" opacity="0.6" transform="rotate(-8 230 163)"/>
+            <ellipse cx="260" cy="165" rx="3" ry="45" fill="#93c5fd" opacity="0.5" transform="rotate(-12 260 165)"/>
+            <ellipse cx="290" cy="160" rx="3" ry="40" fill="#60a5fa" opacity="0.6" transform="rotate(-15 290 160)"/>
+          </g>
+          <!-- Hose/pipe -->
+          <path d="M 340 100 Q 360 110 370 150 Q 375 170 365 190" stroke="#4a7fa5" stroke-width="10" fill="none" stroke-linecap="round"/>
+          <ellipse cx="365" cy="193" rx="8" ry="5" fill="#2563eb"/>
+          <!-- Water droplets -->
+          <circle cx="155" cy="195" r="3" fill="#93c5fd" opacity="0.8"/>
+          <circle cx="200" cy="200" r="4" fill="#60a5fa" opacity="0.7"/>
+          <circle cx="245" cy="196" r="3" fill="#93c5fd" opacity="0.8"/>
+          <!-- Snowflake / cool icon -->
+          <text x="120" y="62" fill="#60a5fa" font-size="16" font-family="Arial">❄</text>
+          <!-- Foam bubbles -->
+          <circle cx="130" cy="158" r="5" fill="white" opacity="0.2"/>
+          <circle cx="180" cy="155" r="7" fill="white" opacity="0.15"/>
+          <circle cx="220" cy="157" r="5" fill="white" opacity="0.2"/>
+          <circle cx="270" cy="156" r="6" fill="white" opacity="0.15"/>
+          <!-- Label -->
+          <text x="200" y="213" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="Arial">Deep Cleaning &amp; High-Pressure Wash</text>
+        </svg>
+      </div>
+      <div class="spot-label">
+        <span class="spot-icon">❄️</span>
+        <div>
+          <div class="spot-title">AC Servicing & Washing</div>
+          <div class="spot-sub">Deep Clean · Filter Wash · Gas Refill · Maintenance</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SERVICE CARDS -->
+  <div class="services-grid reveal">
+    <!-- Electrician -->
+    <div class="service-card">
+      <div class="service-body">
+        <div class="service-icon-row">
+          <span class="service-icon">⚡</span>
+          <span class="service-number">01</span>
+        </div>
+        <h3 class="service-title">Electrician Work</h3>
+        <p class="service-desc">Complete electrical installations, fault-finding, rewiring, consumer unit upgrades, and all domestic wiring done safely to standard.</p>
+        <div class="service-tags">
+          <span class="tag">Wiring</span>
+          <span class="tag">Fault Finding</span>
+          <span class="tag">Upgrades</span>
+          <span class="tag">Sockets</span>
+          <span class="tag late-night-tag">🌙 Late Night</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- AC -->
+    <div class="service-card">
+      <div class="service-body">
+        <div class="service-icon-row">
+          <span class="service-icon">❄️</span>
+          <span class="service-number">02</span>
+        </div>
+        <h3 class="service-title">AC Servicing & Washing</h3>
+        <p class="service-desc">Deep cleaning, filter washing, gas refilling, and complete AC maintenance to keep your unit running cool and efficiently all year.</p>
+        <div class="service-tags">
+          <span class="tag">Deep Clean</span>
+          <span class="tag">Gas Refill</span>
+          <span class="tag">Filter Wash</span>
+          <span class="tag">Maintenance</span>
+          <span class="tag late-night-tag">🌙 Late Night</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- CCTV -->
+    <div class="service-card">
+      <div class="service-body">
+        <div class="service-icon-row">
+          <span class="service-icon">📷</span>
+          <span class="service-number">03</span>
+        </div>
+        <h3 class="service-title">CCTV Camera Installation</h3>
+        <p class="service-desc">Professional security camera installation for homes. Indoor/outdoor cameras, DVR setup, remote viewing access, and full cabling.</p>
+        <div class="service-tags">
+          <span class="tag">Indoor</span>
+          <span class="tag">Outdoor</span>
+          <span class="tag">DVR Setup</span>
+          <span class="tag">Remote View</span>
+          <span class="tag late-night-tag">🌙 Late Night</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- RO -->
+    <div class="service-card">
+      <div class="service-body">
+        <div class="service-icon-row">
+          <span class="service-icon">💧</span>
+          <span class="service-number">04</span>
+        </div>
+        <h3 class="service-title">RO Water Purifier Repair</h3>
+        <p class="service-desc">Complete RO system repair, filter replacement, membrane change, and full servicing. Clean drinking water restored quickly — all brands.</p>
+        <div class="service-tags">
+          <span class="tag">Filter Change</span>
+          <span class="tag">Membrane</span>
+          <span class="tag">Leak Fix</span>
+          <span class="tag">All Brands</span>
+          <span class="tag late-night-tag">🌙 Late Night</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Emergency -->
+    <div class="service-card">
+      <div class="service-body">
+        <div class="service-icon-row">
+          <span class="service-icon">🚨</span>
+          <span class="service-number">05</span>
+        </div>
+        <h3 class="service-title">Emergency Call-Out</h3>
+        <p class="service-desc">Power cuts, AC failures, RO issues, or urgent faults — we respond fast day and night. No job too late, no problem too urgent.</p>
+        <div class="service-tags">
+          <span class="tag">24/7</span>
+          <span class="tag">Fast Response</span>
+          <span class="tag">All Faults</span>
+          <span class="tag late-night-tag">🌙 Late Night</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ LATE NIGHT STRIP ═══ -->
+<div class="late-night-strip">
+  <div class="ln-left">
+    <span class="ln-icon">🌙</span>
+    <div>
+      <div class="ln-title">Available Late Night — All Services</div>
+      <div class="ln-sub">Electrician · AC Washing · RO Repair · CCTV · Emergency — no job too late</div>
+    </div>
+  </div>
+  <a href="tel:+919876543210" class="ln-btn">📞 Call Anytime</a>
+</div>
+
+<!-- ═══ EMERGENCY BANNER ═══ -->
+<div class="emergency-banner">
+  <div class="em-left">
+    <div class="em-icon">🚨</div>
+    <div>
+      <div class="em-text-title">Any Emergency? Call Us Right Now</div>
+      <div class="em-text-sub">Electrical · AC · RO · CCTV — 24 hours, 7 days, including late night</div>
+    </div>
+  </div>
+  <a href="tel:+919876543210" class="em-phone">📞 +91 98765 43210</a>
+</div>
+
+<!-- ═══ ABOUT ═══ -->
+<section id="about">
+  <div class="about-visual reveal">
+    <div class="about-main-box">
+      <span class="about-big-icon">⚡</span>
+      <div class="about-quote">Certified. Trusted. Professional.</div>
+      <div class="about-badge-grid">
+        <div class="about-badge">
+          <div class="ab-num">500+</div>
+          <div class="ab-label">Happy Clients</div>
+        </div>
+        <div class="about-badge">
+          <div class="ab-num">8+</div>
+          <div class="ab-label">Years Active</div>
+        </div>
+        <div class="about-badge">
+          <div class="ab-num">100%</div>
+          <div class="ab-label">Satisfaction</div>
+        </div>
+        <div class="about-badge">
+          <div class="ab-num">24/7</div>
+          <div class="ab-label">Available</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="about-content reveal">
+    <div class="section-label">Who We Are</div>
+    <h2 class="section-title">ABOUT<br>TECH HOUSE</h2>
+    <p class="section-desc">Tech House is your trusted local expert for all home electrical and technology services in Jalandhar, Punjab. We bring years of hands-on experience, quality workmanship, and genuine care for every customer we serve.</p>
+    <ul class="about-list">
+      <li>Fully certified and experienced electrician</li>
+      <li>Specialist in domestic AC servicing and deep washing</li>
+      <li>Expert RO water purifier repair — all brands covered</li>
+      <li>Professional CCTV and camera system installations</li>
+      <li>Available late night for all services — no extra hassle</li>
+      <li>Emergency response available 24 hours, 7 days</li>
+      <li>Honest pricing with no hidden charges</li>
+      <li>Clean, punctual, and respectful of your property</li>
+    </ul>
+    <a href="#contact" class="btn-primary">Book a Service Today</a>
+  </div>
+</section>
+
+<!-- ═══ WHY US ═══ -->
+<section id="why">
+  <div class="reveal" style="text-align:center; margin-bottom:0.5rem;">
+    <div class="section-label" style="justify-content:center;">Our Promise</div>
+    <h2 class="section-title">Why Choose Tech House</h2>
+  </div>
+  <div class="why-grid">
+    <div class="why-card reveal">
+      <span class="why-icon">🏅</span>
+      <div class="why-title">Certified Expertise</div>
+      <p class="why-desc">Fully trained and certified across electrical work, AC servicing, RO repair, and CCTV installation. Safe, professional hands every time.</p>
+    </div>
+    <div class="why-card reveal">
+      <span class="why-icon">⚡</span>
+      <div class="why-title">Fast Response</div>
+      <p class="why-desc">We understand urgency. Whether a booking or an emergency, we aim to reach you as quickly as possible — day or late night.</p>
+    </div>
+    <div class="why-card reveal">
+      <span class="why-icon">🌙</span>
+      <div class="why-title">Late Night Available</div>
+      <p class="why-desc">All our services are available late at night. Electrical, AC, RO, CCTV — no problem is too late for us to solve.</p>
+    </div>
+    <div class="why-card reveal">
+      <span class="why-icon">💰</span>
+      <div class="why-title">Fair Pricing</div>
+      <p class="why-desc">Transparent, competitive pricing with zero hidden fees. You'll always know the cost before we begin any work.</p>
+    </div>
+    <div class="why-card reveal">
+      <span class="why-icon">🛡️</span>
+      <div class="why-title">Guaranteed Work</div>
+      <p class="why-desc">All our work comes with a satisfaction guarantee. If anything isn't right, we come back and fix it — simple as that.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CONTACT ═══ -->
+<section id="contact">
+  <div class="contact-info reveal">
+    <div class="section-label">Get In Touch</div>
+    <h2 class="section-title">CONTACT<br>TECH HOUSE</h2>
+    <p class="section-desc">Ready to book a service or have a question? Get in touch and we'll respond quickly.</p>
+    <div class="contact-items">
+      <div class="contact-item">
+        <div class="ci-icon">📞</div>
+        <div>
+          <div class="ci-label">Phone / WhatsApp</div>
+          <div class="ci-value">+91 98765 43210</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="ci-icon">📧</div>
+        <div>
+          <div class="ci-label">Email</div>
+          <div class="ci-value"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="2841464e47685c4d4b4040475d5b4d064b4745">[email&#160;protected]</a></div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="ci-icon">📍</div>
+        <div>
+          <div class="ci-label">Service Area</div>
+          <div class="ci-value">Jalandhar, Punjab & surrounding areas</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="ci-icon">🕐</div>
+        <div>
+          <div class="ci-label">Working Hours</div>
+          <div class="ci-value">Mon–Sun: 8am–11pm | Emergency & Late Night: Always</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="contact-form reveal">
+    <div class="form-title">Book a Service</div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Your Name</label>
+        <input type="text" id="fname" placeholder="Full name">
+      </div>
+      <div class="form-group">
+        <label>Phone Number</label>
+        <input type="tel" id="fphone" placeholder="+91 00000 00000">
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Service Required</label>
+      <select id="fservice">
+        <option value="">Select a service...</option>
+        <option>Electrician Work</option>
+        <option>AC Servicing / Washing</option>
+        <option>RO Water Purifier Repair</option>
+        <option>CCTV Camera Installation</option>
+        <option>Emergency Call-Out</option>
+        <option>Late Night Service</option>
+        <option>Multiple Services</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Your Address / Area</label>
+      <input type="text" id="faddress" placeholder="Your location in Jalandhar">
+    </div>
+    <div class="form-group">
+      <label>Message (optional)</label>
+      <textarea id="fmessage" placeholder="Describe your issue or requirements..."></textarea>
+    </div>
+    <button class="form-submit" onclick="submitForm()">Send Enquiry ⚡</button>
+    <div class="success-msg" id="successMsg">✅ Thank you! We'll be in touch with you shortly.</div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-logo-text">TECH<span>HOUSE</span></div>
+      <p class="footer-tagline">Your trusted local expert for electrical, AC washing, RO repair, and CCTV in Jalandhar, Punjab. Fast. Reliable. Available Late Night.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul class="footer-links">
+        <li><a href="#services">⚡ Electrician Work</a></li>
+        <li><a href="#services">❄️ AC Servicing & Washing</a></li>
+        <li><a href="#services">💧 RO Repair</a></li>
+        <li><a href="#services">📷 CCTV Installation</a></li>
+        <li><a href="#services">🚨 Emergency Call-Out</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul class="footer-links">
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#why">Why Choose Us</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="tel:+919876543210">📞 Call Now</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2025 <span>Tech House</span>. All rights reserved.</div>
+    <div class="footer-copy">Made with ⚡ for Jalandhar, Punjab</div>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  function toggleNav() {
+    document.getElementById('navLinks').classList.toggle('open');
+  }
+
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', () => {
+      document.getElementById('navLinks').classList.remove('open');
+    });
+  });
+
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  reveals.forEach(r => observer.observe(r));
+
+  function submitForm() {
+    const name = document.getElementById('fname').value.trim();
+    const phone = document.getElementById('fphone').value.trim();
+    const service = document.getElementById('fservice').value;
+    if (!name || !phone || !service) {
+      alert('Please fill in your name, phone number, and select a service.');
+      return;
+    }
+    document.getElementById('successMsg').style.display = 'block';
+    document.getElementById('fname').value = '';
+    document.getElementById('fphone').value = '';
+    document.getElementById('fservice').value = '';
