@@ -526,8 +526,9 @@ footer{background:var(--dark);padding:3rem 5% 2rem;border-top:2px solid var(--or
     <div class="f-grp"><label>Your Address / Area</label><input type="text" id="faddr" placeholder="Your location in Kharar / Mohali" autocomplete="street-address"></div>
     <div class="f-grp"><label>Message (optional)</label><textarea id="fmsg" placeholder="Describe your issue or requirements..."></textarea></div>
     <button class="f-submit" id="submitBtn" onclick="doSubmit()">Send Enquiry &#9889;</button>
-    <div class="success" id="okMsg">&#9989; Sent! We will call / WhatsApp you shortly. For urgent help call +91 90411 95559</div>
-    <div class="error-msg" id="errMsg">&#9888; Something went wrong. Please call us directly on +91 90411 95559</div>
+    <div class="success" id="okMsg">&#9989; Booking received! We will contact you on WhatsApp / call shortly. For urgent help call <a href="tel:+919041195559" style="color:#15803d;font-weight:700;">+91 90411 95559</a></div>
+    <div class="error-msg" id="errMsg">&#9888; Could not send. Please call/WhatsApp us directly: <a href="tel:+919041195559" style="color:var(--orange);font-weight:700;">+91 90411 95559</a></div>
+    <p style="font-size:0.72rem;color:var(--mid);margin-top:0.8rem;text-align:center;">Or reach us instantly: <a href="https://wa.me/919041195559" target="_blank" style="color:#25d366;font-weight:700;">&#128232; WhatsApp +91 90411 95559</a></p>
   </div>
 </section>
 
@@ -564,7 +565,7 @@ footer{background:var(--dark);padding:3rem 5% 2rem;border-top:2px solid var(--or
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 function toggleNav(){document.getElementById('navLinks').classList.toggle('open');}
 document.querySelectorAll('a[href^="#"]').forEach(function(a){
   a.addEventListener('click',function(){document.getElementById('navLinks').classList.remove('open');});
@@ -588,22 +589,33 @@ function doSubmit(){
   var m=document.getElementById('fmsg').value.trim();
   if(!n||!p||!s){alert('Please fill in your name, phone number, and select a service.');return;}
   var btn=document.getElementById('submitBtn');
+  var okMsg=document.getElementById('okMsg');
+  var errMsg=document.getElementById('errMsg');
+  okMsg.style.display='none';
+  errMsg.style.display='none';
   btn.textContent='Sending...';
   btn.disabled=true;
-  var subject=encodeURIComponent('New Service Booking - Tech House Kharar');
-  var body=encodeURIComponent(
-    'New booking request from Tech House website:\n\n'+
-    'Name: '+n+'\n'+
-    'Phone: '+p+'\n'+
-    'Service Required: '+s+'\n'+
-    'Address/Area: '+(a||'Not provided')+'\n'+
-    'Message: '+(m||'None')+'\n\n'+
-    '--- Sent from techhouse.com ---'
-  );
-  var mailtoLink='mailto:varinder_virk@yahoo.com?subject='+subject+'&body='+body;
-  window.location.href=mailtoLink;
-  setTimeout(function(){
-    document.getElementById('okMsg').style.display='block';
-    btn.textContent='Send Enquiry \u26a1';
-    btn.disabled=false;
-    ['fname','fp
+  var data=new FormData();
+  data.append('name',n);
+  data.append('phone',p);
+  data.append('service',s);
+  data.append('address',a||'Not provided');
+  data.append('message',m||'None');
+  data.append('_subject','New Booking - Tech House Kharar: '+s);
+  data.append('_replyto',p);
+  fetch('https://formspree.io/f/xovdwkgb',{method:'POST',body:data,headers:{Accept:'application/json'}})
+  .then(function(r){
+    if(r.ok){
+      okMsg.style.display='block';
+      ['fname','fphone','fservice','faddr','fmsg'].forEach(function(id){var el=document.getElementById(id);if(el)el.value='';});
+      setTimeout(function(){okMsg.style.display='none';},10000);
+    } else {
+      errMsg.style.display='block';
+    }
+  })
+  .catch(function(){errMsg.style.display='block';})
+  .finally(function(){btn.textContent='Send Enquiry \u26a1';btn.disabled=false;});
+}
+</script>
+</body>
+</html>
